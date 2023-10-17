@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class
-PriceControllerIT {
+PriceControllerIntegrationTests {
 
     @LocalServerPort
     private Integer port;
@@ -33,7 +33,9 @@ PriceControllerIT {
                 .body("priceList", equalTo(1))
                 .body("startDate", equalTo("2020-06-14T00:00:00"))
                 .body("endDate", equalTo("2020-12-31T23:59:59"))
-                .body("amount", equalTo(35.50f));
+                .body("amount", equalTo(35.50f))
+                .body("currency", equalTo("EUR"));
+
     }
 
     @Test()
@@ -51,7 +53,8 @@ PriceControllerIT {
                 .body("priceList", equalTo(2))
                 .body("startDate", equalTo("2020-06-14T15:00:00"))
                 .body("endDate", equalTo("2020-06-14T18:30:00"))
-                .body("amount", equalTo(25.45f));
+                .body("amount", equalTo(25.45f))
+                .body("currency", equalTo("EUR"));
 
     }
 
@@ -70,7 +73,8 @@ PriceControllerIT {
                 .body("priceList", equalTo(1))
                 .body("startDate", equalTo("2020-06-14T00:00:00"))
                 .body("endDate", equalTo("2020-12-31T23:59:59"))
-                .body("amount", equalTo(35.5f));
+                .body("amount", equalTo(35.5f))
+                .body("currency", equalTo("EUR"));
 
     }
 
@@ -89,7 +93,8 @@ PriceControllerIT {
                 .body("priceList", equalTo(3))
                 .body("startDate", equalTo("2020-06-15T00:00:00"))
                 .body("endDate", equalTo("2020-06-15T11:00:00"))
-                .body("amount", equalTo(30.5f));
+                .body("amount", equalTo(30.5f))
+                .body("currency", equalTo("EUR"));
 
     }
 
@@ -108,7 +113,8 @@ PriceControllerIT {
                 .body("priceList", equalTo(4))
                 .body("startDate", equalTo("2020-06-15T16:00:00"))
                 .body("endDate", equalTo("2020-12-31T23:59:59"))
-                .body("amount", equalTo(38.95f));
+                .body("amount", equalTo(38.95f))
+                .body("currency", equalTo("EUR"));
 
     }
 

@@ -10,6 +10,7 @@ public class PriceAssembler {
                 .productId(priceDao.getProductId())
                 .priceList(priceDao.getPriceList())
                 .amount(priceDao.getPrice())
+                .currency(priceDao.getCurrency())
                 .priority(priceDao.getPriority())
                 .startDate(priceDao.getStartDate())
                 .endDate(priceDao.getEndDate())

@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.github.njsuarez.prices.domain.model.Currency;
 import com.github.njsuarez.prices.domain.model.Price;
 import com.github.njsuarez.prices.domain.service.PriceService;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,6 +43,7 @@ public class PriceControllerTests {
                 .startDate(startDate)
                 .endDate(endDate)
                 .amount(new BigDecimal("25.56"))
+                .currency(Currency.EUR)
                 .build();
 
         when(priceService.getPrice(eq(samplePrice.getBrandId()), eq(samplePrice.getProductId()), any(LocalDateTime.class)))
@@ -65,6 +67,7 @@ public class PriceControllerTests {
                 .andExpect(jsonPath("$.startDate").value("2020-10-12T00:00:00"))
                 .andExpect(jsonPath("$.endDate").value("2020-10-12T23:59:59"))
                 .andExpect(jsonPath("$.amount").value(samplePrice.getAmount()))
+                .andExpect(jsonPath("$.currency").value(samplePrice.getCurrency().toString()))
                 .andDo(print());
 
     }

@@ -11,7 +11,8 @@ public class PriceDtoAssembler {
                 .priceList(price.getPriceList())
                 .startDate(price.getStartDate())
                 .endDate(price.getEndDate())
-                .amount(price.getAmount().doubleValue());
+                .amount(price.getAmount().doubleValue())
+                .currency(String.valueOf(price.getCurrency()));
     }
 
 }

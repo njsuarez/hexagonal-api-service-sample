@@ -9,7 +9,7 @@ API para la gestión de précios.
 
 Se han incluido el wrapper de maven para facilitar la construcción y ejecución de la solución.
 
-## Construccion 
+## Construccion
 
 * Construcción de los binarios:
 
@@ -17,16 +17,10 @@ Se han incluido el wrapper de maven para facilitar la construcción y ejecución
 ./mvnw clean compile
 ```
 
-* Ejecución de test unitarios 
+* Ejecución de test unitarios
 
 ```bash
 ./mvnw test
-```
-
-* Ejecución de test de integración 
-
-```bash
-./mvnw verify
 ```
 
 ## Ejecución
@@ -46,8 +40,8 @@ Se puede encontrar la definición del API en el código `src/main/resources/pric
 
 Las interfaces del API Rest se generan a partir de la definion del mismo que se encuentra en el archivo mencionado anteriormente.
 
-Se ha optado por emplear todos los parametros como query params, pero otra opción podría haber sido emplear el brandId 
-como una header, lo cual tiene más sentido en una aproximación multimarca. 
+Se ha optado por emplear todos los parametros como query params, pero otra opción podría haber sido emplear el brandId
+como una header, lo cual tiene más sentido en una aproximación multimarca.
 
 ## Base de datos
 
@@ -62,7 +56,7 @@ spring:
 #    console.enabled: true # Enabled database console on http://localhost:8080/h2-console, uncomment to use it
 ```
 
-## Consulta 
+## Consulta
 
 Podemos consultar el servicio desde la linea de comandos empleando curl.
 

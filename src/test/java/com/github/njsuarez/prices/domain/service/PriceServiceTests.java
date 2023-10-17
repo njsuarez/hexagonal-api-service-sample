@@ -2,6 +2,7 @@ package com.github.njsuarez.prices.domain.service;
 
 import com.github.njsuarez.prices.domain.exceptions.BadParameterException;
 import com.github.njsuarez.prices.domain.exceptions.NotFoundException;
+import com.github.njsuarez.prices.domain.model.Currency;
 import com.github.njsuarez.prices.domain.model.Price;
 import com.github.njsuarez.prices.domain.repository.PriceRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,6 +47,7 @@ public class PriceServiceTests {
                 .startDate(startDate)
                 .endDate(endDate)
                 .amount(new BigDecimal("25.56"))
+                .currency(Currency.EUR)
                 .priority(0)
                 .build();
 
@@ -60,6 +62,7 @@ public class PriceServiceTests {
         assertEquals(1 , price.getPriceList());
         assertEquals(0 , price.getPriority());
         assertEquals(new BigDecimal("25.56") , price.getAmount());
+        assertEquals(Currency.EUR, price.getCurrency());
 
     }
 
@@ -76,6 +79,7 @@ public class PriceServiceTests {
                 .startDate(startDate)
                 .endDate(endDate)
                 .amount(new BigDecimal("25.56"))
+                .currency(Currency.EUR)
                 .priority(1)
                 .build();
 
@@ -86,6 +90,7 @@ public class PriceServiceTests {
                 .startDate(startDate)
                 .endDate(endDate)
                 .amount(new BigDecimal("12.56"))
+                .currency(Currency.EUR)
                 .priority(0)
                 .build();
 
@@ -100,6 +105,7 @@ public class PriceServiceTests {
         assertEquals(1 , price.getPriceList());
         assertEquals(1 , price.getPriority());
         assertEquals(new BigDecimal("25.56") , price.getAmount());
+        assertEquals(Currency.EUR, price.getCurrency());
 
     }
     @Test

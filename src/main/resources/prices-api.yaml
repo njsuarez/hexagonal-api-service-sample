@@ -116,12 +116,16 @@ components:
           type: number
           format: double
           example: 38.50
+        currency:
+          description: Currency to apply to the amount
+          type: string
+          example: EUR
       required:
         - productId
         - brandId
         - priceList
         - date
-        - price
+        - amount
   responses:
     BadRequestResponse:
       description: Bad Request
