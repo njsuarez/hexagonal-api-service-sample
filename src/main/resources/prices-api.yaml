@@ -126,6 +126,7 @@ components:
         - priceList
         - date
         - amount
+        - currency
   responses:
     BadRequestResponse:
       description: Bad Request

@@ -1,4 +1,4 @@
-package com.github.njsuarez.prices.infrastructure.repository.dao;
+package com.github.njsuarez.prices.infrastructure.adapter.repository.dao;
 
 import com.github.njsuarez.prices.domain.model.Currency;
 import jakarta.persistence.*;

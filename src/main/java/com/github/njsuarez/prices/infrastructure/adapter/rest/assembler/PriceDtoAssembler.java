@@ -1,6 +1,7 @@
-package com.github.njsuarez.prices.application.api.model;
+package com.github.njsuarez.prices.infrastructure.adapter.rest.assembler;
 
 import com.github.njsuarez.prices.domain.model.Price;
+import com.github.njsuarez.prices.infrastructure.adapter.rest.api.model.PriceDto;
 
 public class PriceDtoAssembler {
 
@@ -14,5 +15,4 @@ public class PriceDtoAssembler {
                 .amount(price.getAmount().doubleValue())
                 .currency(String.valueOf(price.getCurrency()));
     }
-
 }

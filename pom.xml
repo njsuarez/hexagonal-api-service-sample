@@ -105,9 +105,9 @@
 							<inputSpec>${project.basedir}/src/main/resources/prices-api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<library>spring-boot</library>
-							<packageName>com.github.njsuarez.prices.application</packageName>
-							<apiPackage>com.github.njsuarez.prices.application.api</apiPackage>
-							<modelPackage>com.github.njsuarez.prices.application.api.model</modelPackage>
+							<packageName>com.github.njsuarez.prices.infrastructure.adapter.rest</packageName>
+							<apiPackage>com.github.njsuarez.prices.infrastructure.adapter.rest.api</apiPackage>
+							<modelPackage>com.github.njsuarez.prices.infrastructure.adapter.rest.api.model</modelPackage>
 							<modelNameSuffix>Dto</modelNameSuffix>
 							<removeOperationIdPrefix>true</removeOperationIdPrefix>
 							<generateSupportingFiles>false</generateSupportingFiles>

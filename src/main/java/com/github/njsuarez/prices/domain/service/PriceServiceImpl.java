@@ -1,10 +1,10 @@
 package com.github.njsuarez.prices.domain.service;
 
 
+import com.github.njsuarez.prices.application.port.output.GetPricesListPort;
 import com.github.njsuarez.prices.domain.exceptions.BadParameterException;
 import com.github.njsuarez.prices.domain.exceptions.NotFoundException;
 import com.github.njsuarez.prices.domain.model.Price;
-import com.github.njsuarez.prices.domain.repository.PriceRepository;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 public class PriceServiceImpl implements PriceService {
 
-    private PriceRepository priceRepository;
+    private GetPricesListPort getPricesListPort;
 
     @Override
     public Optional<Price> getPrice(Integer brandId, Integer productId, LocalDateTime date) {
@@ -36,7 +36,7 @@ public class PriceServiceImpl implements PriceService {
         }
 
         log.info("Get prices for brandId: {}, productId: {}, date: {}", brandId, productId, date);
-        return Optional.of(priceRepository.getPrice(brandId, productId, date).stream()
+        return Optional.of(getPricesListPort.getPriceList(brandId, productId, date).stream()
                 .findFirst()
                 .orElseThrow(() -> new NotFoundException("Not found price for these cirteria")));
     }

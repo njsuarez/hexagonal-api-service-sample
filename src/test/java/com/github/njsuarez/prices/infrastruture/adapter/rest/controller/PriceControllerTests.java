@@ -1,4 +1,4 @@
-package com.github.njsuarez.prices.application.controller;
+package com.github.njsuarez.prices.infrastruture.adapter.rest.controller;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
@@ -6,9 +6,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.github.njsuarez.prices.application.port.input.FindPricePort;
 import com.github.njsuarez.prices.domain.model.Currency;
 import com.github.njsuarez.prices.domain.model.Price;
-import com.github.njsuarez.prices.domain.service.PriceService;
+import com.github.njsuarez.prices.infrastructure.adapter.rest.controller.PriceController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class PriceControllerTests {
     private Price samplePrice;
 
     @MockBean
-    private PriceService priceService;
+    private FindPricePort findPricePort;
 
     @Autowired
     private MockMvc mockMvc;
@@ -46,10 +47,10 @@ public class PriceControllerTests {
                 .currency(Currency.EUR)
                 .build();
 
-        when(priceService.getPrice(eq(samplePrice.getBrandId()), eq(samplePrice.getProductId()), any(LocalDateTime.class)))
+        when(findPricePort.getPrice(eq(samplePrice.getBrandId()), eq(samplePrice.getProductId()), any(LocalDateTime.class)))
                 .thenReturn(Optional.of(samplePrice));
 
-        when(priceService.getPrice(eq(2), eq(samplePrice.getProductId()), any(LocalDateTime.class)))
+        when(findPricePort.getPrice(eq(2), eq(samplePrice.getProductId()), any(LocalDateTime.class)))
                 .thenReturn(Optional.empty());
     }
 

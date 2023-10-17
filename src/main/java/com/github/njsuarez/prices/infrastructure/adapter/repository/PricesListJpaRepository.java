@@ -1,9 +1,9 @@
-package com.github.njsuarez.prices.infrastructure.repository;
+package com.github.njsuarez.prices.infrastructure.adapter.repository;
 
+import com.github.njsuarez.prices.application.port.output.GetPricesListPort;
 import com.github.njsuarez.prices.domain.model.Price;
-import com.github.njsuarez.prices.domain.repository.PriceRepository;
-import com.github.njsuarez.prices.infrastructure.repository.dao.PriceAssembler;
-import com.github.njsuarez.prices.infrastructure.repository.dao.PriceDao;
+import com.github.njsuarez.prices.infrastructure.adapter.repository.dao.PriceAssembler;
+import com.github.njsuarez.prices.infrastructure.adapter.repository.dao.PriceDao;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Repository
-public interface PriceJpaRepository extends CrudRepository<PriceDao, Long>, PriceRepository {
+public interface PricesListJpaRepository extends CrudRepository<PriceDao, Long>, GetPricesListPort {
 
     @Override
-    default List<Price> getPrice(Integer brandId, Integer productId, LocalDateTime date) {
+    default List<Price> getPriceList(Integer brandId, Integer productId, LocalDateTime date) {
         Iterable<PriceDao> pricesDao = findAllByBrandIdAndProductIdAndStartDateBeforeAndEndDateAfterOrderByPriorityDesc(brandId,
                 productId, date, date);
         return StreamSupport.stream(pricesDao.spliterator(), false).map(PriceAssembler::assemble)

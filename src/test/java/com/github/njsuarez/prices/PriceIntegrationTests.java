@@ -1,4 +1,4 @@
-package com.github.njsuarez.prices.application.controller;
+package com.github.njsuarez.prices;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class
-PriceControllerIntegrationTests {
+PriceIntegrationTests {
 
     @LocalServerPort
     private Integer port;

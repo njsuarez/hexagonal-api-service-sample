@@ -1,11 +1,11 @@
-package com.github.njsuarez.prices.domain.repository;
+package com.github.njsuarez.prices.application.port.output;
 
 import com.github.njsuarez.prices.domain.model.Price;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface PriceRepository {
+public interface GetPricesListPort {
 
     /**
      * Query for prices with the criteria, order by its priority
@@ -15,6 +15,6 @@ public interface PriceRepository {
      * @param date
      * @return
      */
-    List<Price> getPrice(Integer brandId, Integer productId, LocalDateTime date);
+    List<Price> getPriceList(Integer brandId, Integer productId, LocalDateTime date);
 
 }

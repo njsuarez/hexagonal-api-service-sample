@@ -1,6 +1,6 @@
-package com.github.njsuarez.prices.application.controller;
+package com.github.njsuarez.prices.infrastructure.adapter.rest.controller;
 
-import com.github.njsuarez.prices.application.api.model.ErrorDto;
+import com.github.njsuarez.prices.infrastructure.adapter.rest.api.model.ErrorDto;
 import com.github.njsuarez.prices.domain.exceptions.BadParameterException;
 import com.github.njsuarez.prices.domain.exceptions.NotFoundException;
 import lombok.extern.slf4j.Slf4j;

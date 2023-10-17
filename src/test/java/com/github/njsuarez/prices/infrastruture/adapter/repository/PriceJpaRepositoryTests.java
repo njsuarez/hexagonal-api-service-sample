@@ -1,7 +1,7 @@
-package com.github.njsuarez.prices.infrastruture.repository;
+package com.github.njsuarez.prices.infrastruture.adapter.repository;
 
 import com.github.njsuarez.prices.domain.model.Price;
-import com.github.njsuarez.prices.domain.repository.PriceRepository;
+import com.github.njsuarez.prices.infrastructure.adapter.repository.PricesListJpaRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PriceJpaRepositoryTests {
 
     @Autowired
-    private PriceRepository priceRepository;
+    private PricesListJpaRepository priceJpaRepository;
 
     @Test
-    void getPriceByBrandProductAndDate() throws Exception {
+    void getPriceListByBrandProductAndDate() throws Exception {
         LocalDateTime date = LocalDateTime.of(2020, 6, 14, 10,0, 0);
-        List<Price> prices = priceRepository.getPrice(1,35455, date);
+        List<Price> prices = priceJpaRepository.getPriceList(1,35455, date);
 
         assertEquals(1, prices.size());
 
@@ -38,39 +38,39 @@ public class PriceJpaRepositoryTests {
     }
 
     @Test
-    void getPriceByBrandProductAndDateNotFound() throws Exception {
+    void getPriceListByBrandProductAndDateNotFound() throws Exception {
         LocalDateTime date = LocalDateTime.of(2021, 1, 1, 12,0, 0);
-        List<Price> prices = priceRepository.getPrice(1,35455, date);
+        List<Price> prices = priceJpaRepository.getPriceList(1,35455, date);
 
         assertEquals(0, prices.size());
     }
 
     @Test
-    void getPriceByBrandProductAndDateNullDateValue() throws Exception {
-        List<Price> prices = priceRepository.getPrice(1,35455, null);
+    void getPriceListByBrandProductAndDateNullDateValue() throws Exception {
+        List<Price> prices = priceJpaRepository.getPriceList(1,35455, null);
         assertEquals(0, prices.size());
     }
 
     @Test
-    void getPriceByBrandProductAndDateNullBrandValue() throws Exception {
+    void getPriceListByBrandProductAndDateNullBrandValue() throws Exception {
         LocalDateTime date = LocalDateTime.of(2021, 1, 1, 12,0, 0);
-        List<Price> prices = priceRepository.getPrice(null,35455, date);
+        List<Price> prices = priceJpaRepository.getPriceList(null,35455, date);
 
         assertEquals(0, prices.size());
     }
 
     @Test
-    void getPriceByBrandProductAndDateNullPRoductValue() throws Exception {
+    void getPriceListByBrandProductAndDateNullProductValue() throws Exception {
         LocalDateTime date = LocalDateTime.of(2021, 1, 1, 12,0, 0);
-        List<Price> prices = priceRepository.getPrice(1,null, date);
+        List<Price> prices = priceJpaRepository.getPriceList(1,null, date);
 
         assertEquals(0, prices.size());
     }
 
     @Test
-    void getPriceByBrandProductAndDateSelectPriority() throws Exception {
+    void getPriceListByBrandProductAndDateSelectPriority() throws Exception {
         LocalDateTime date = LocalDateTime.of(2020, 6, 14, 18,0, 0);
-        List<Price> prices = priceRepository.getPrice(1,35455, date);
+        List<Price> prices = priceJpaRepository.getPriceList(1,35455, date);
 
         assertEquals(2, prices.size());
 

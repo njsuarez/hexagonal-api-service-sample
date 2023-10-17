@@ -1,10 +1,11 @@
 package com.github.njsuarez.prices.domain.service;
 
+import com.github.njsuarez.prices.application.port.output.GetPricesListPort;
 import com.github.njsuarez.prices.domain.exceptions.BadParameterException;
 import com.github.njsuarez.prices.domain.exceptions.NotFoundException;
 import com.github.njsuarez.prices.domain.model.Currency;
 import com.github.njsuarez.prices.domain.model.Price;
-import com.github.njsuarez.prices.domain.repository.PriceRepository;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,11 +29,11 @@ public class PriceServiceTests {
     private PriceService priceService;
 
     @Mock
-    private PriceRepository priceRepository;
+    private GetPricesListPort getPricesListPort;
 
     @BeforeEach
     void init() {
-        priceService = new PriceServiceImpl(priceRepository);
+        priceService = new PriceServiceImpl(getPricesListPort);
     }
 
     @Test
@@ -51,7 +52,7 @@ public class PriceServiceTests {
                 .priority(0)
                 .build();
 
-        when(priceRepository.getPrice(eq(samplePrice.getBrandId()), eq(samplePrice.getProductId()), any(LocalDateTime.class)))
+        when(getPricesListPort.getPriceList(eq(samplePrice.getBrandId()), eq(samplePrice.getProductId()), any(LocalDateTime.class)))
                 .thenReturn(List.of(samplePrice));
 
         LocalDateTime date = LocalDateTime.of(2020, 10,12, 12,00,00);
@@ -94,7 +95,7 @@ public class PriceServiceTests {
                 .priority(0)
                 .build();
 
-        when(priceRepository.getPrice(eq(2), eq(35455), any(LocalDateTime.class)))
+        when(getPricesListPort.getPriceList(eq(2), eq(35455), any(LocalDateTime.class)))
                 .thenReturn(List.of(primaryPrice, secondaryPrice));
 
         LocalDateTime date = LocalDateTime.of(2020, 10,12, 12,00,00);
@@ -110,7 +111,7 @@ public class PriceServiceTests {
     }
     @Test
     public void testGetPriceNotFound() throws Exception {
-        when(priceRepository.getPrice(any(Integer.class), any(Integer.class), any(LocalDateTime.class))).thenReturn(Collections.emptyList());
+        when(getPricesListPort.getPriceList(any(Integer.class), any(Integer.class), any(LocalDateTime.class))).thenReturn(Collections.emptyList());
         LocalDateTime date = LocalDateTime.of(2020, 10,12, 12,00,00);
         Exception exception = assertThrows(NotFoundException.class, () -> {
             priceService.getPrice(1, 35455, date);
