@@ -1,54 +1,53 @@
-# Prices
+# API First approach with Hexagonal Architecture Sample
 
-API para la gestión de précios.
+This is a sample of how to implement a API First service following and Hexagonal Architecture.
 
-## Pre-requisitos
+API is generated from OpenApi specification. (`../src/main/resources/prices-api.yaml`)
+
+## Pre-requisites
 
 * OpenJDK 17
-* Maven 3.2 (Opcional)
+* Maven 3.2 (Optional)
 
-Se han incluido el wrapper de maven para facilitar la construcción y ejecución de la solución.
+We include maven gradle to made easy build and run.
 
-## Construccion
+## Build
 
-* Construcción de los binarios:
+The build process will create the API interfaces to implement the service.
+
+* Run build process:
 
 ```bash
 ./mvnw clean compile
 ```
 
-* Ejecución de test unitarios
+* Run unit tests
 
 ```bash
 ./mvnw test
 ```
 
-## Ejecución
+## Run
 
-Para ejecutar el servicio empleamos el comando siguiente
+We can run service with default Spring Boot goal, it will expose the service in port 8080.
 
 ```bash
 ./mvnn spring-boot:run
 ```
 
-El servicio estará ejecutandose en el puerto 8080.
+## API documentation
 
-## API docs
+The service is auto-documented and exposed it in the url: http://localhost:8080/api-docs.
 
-El servicio contiene documentación del api en la siguiente url: http://localhost:8080/api-docs.
-Se puede encontrar la definición del API en el código `src/main/resources/prices-api.yaml`.
+We used query params to implement GET call but we can use some of then as headers if we try to use a multi-tenant approach
 
-Las interfaces del API Rest se generan a partir de la definion del mismo que se encuentra en el archivo mencionado anteriormente.
+## Database
 
-Se ha optado por emplear todos los parametros como query params, pero otra opción podría haber sido emplear el brandId
-como una header, lo cual tiene más sentido en una aproximación multimarca.
+We use H2 in the sample to avoid to deploy a database service. 
 
-## Base de datos
+The database is populated from a config file (`src/main/resources/database.yaml`) to have dataset of information to play with the service. 
 
-La base de datos es persistida en memoria (H2) y se auto-rellena con los datos que se encuentra en el fichero `src/main/resources/database.yaml`.
-Se ha dejado configurada la consola de h2 para hacer consultas, pero esta deshabilitada.
-
-Para reactivar la consola es nesario descomentar la siguiente line en `src/main/resources/application.yaml`
+We have disabled the H2 console but it is easy to enable it, only have to modify the application.yaml file. (`src/main/resources/application.yaml`)
 
 ```yaml
 spring:
@@ -56,9 +55,9 @@ spring:
 #    console.enabled: true # Enabled database console on http://localhost:8080/h2-console, uncomment to use it
 ```
 
-## Consulta
+## Query sample
 
-Podemos consultar el servicio desde la linea de comandos empleando curl.
+We can consume the service with this simple command or with postman.
 
 ```bash
 curl --location 'localhost:8080/prices?productId=35455&brandId=1&date=2020-06-14T17%3A32%3A28Z'
